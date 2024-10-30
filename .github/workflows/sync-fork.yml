@@ -1,0 +1,31 @@
+name: Sync Fork Upstream
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'  # Runs every 6 hours
+  workflow_dispatch:  # Allows manual trigger
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          ref: master  # Use 'main' branch for the workflow
+
+      - name: Sync and merge upstream repository with your current repository
+        uses: dabreadman/sync-upstream-repo@v1.3.0
+        with:
+          # URL of GitHub public upstream repo
+          upstream_repo: "https://github.com/n8n-io/n8n.git"
+          # Branch to merge from upstream (defaults to downstream branch)
+          upstream_branch: master
+          # Branch to merge into downstream
+          downstream_branch: master
+          # GitHub Bot token
+          token: ${{ secrets.WORKFLOW_TOKEN }}
+          # Log into sync-upstream-repo
+          spawn_logs: false
+# Good luck charm :)
