@@ -1,14 +1,13 @@
 steps:
   # Step 1: Build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
-		dir: 'docker/images/n8n'
+		dir: '/docker/images/n8n'
     args: [
       'build', '-t', 'gcr.io/flowise-dev-pipeline/n8n:dev', '-f', 'Dockerfile', '--build-arg', 'N8N_VERSION=1.65.0', '.'
     ]
 
   # Step 2: Push the Docker image to GCR
   - name: 'gcr.io/cloud-builders/docker'
-		dir: 'docker/images/n8n'
     args: [
       'push', 'gcr.io/flowise-dev-pipeline/n8n:dev'
     ]
