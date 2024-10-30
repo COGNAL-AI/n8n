@@ -1,12 +1,11 @@
 steps:
   # Step 1: Build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
-    dir: 'docker/images/n8n'
+    dir: 'docker/images/n8n-base'
     args: [
       'build', 
       '-t', 'gcr.io/flowise-dev-pipeline/n8n:dev', 
       '-f', 'Dockerfile', 
-      '--build-arg', 'N8N_VERSION=1.65.0', 
       '.'
     ]
 
@@ -19,3 +18,4 @@ steps:
 # Cloud Build options to enable Cloud Logging
 options:
   logging: CLOUD_LOGGING_ONLY  # Send logs only to Cloud Logging
+# Good luck charm :)
