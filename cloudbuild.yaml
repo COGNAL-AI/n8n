@@ -1,11 +1,10 @@
 steps:
   # Step 1: Build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
-    dir: 'docker/images/n8n-base'
     args: [
       'build', 
       '-t', 'gcr.io/flowise-dev-pipeline/n8n:dev', 
-      '-f', 'Dockerfile', 
+      '-f', 'docker/images/n8n-base/Dockerfile', 
       '.'
     ]
 
