@@ -1,0 +1,18 @@
+steps:
+  # Step 1: Build the Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [
+      'build', '-t', 'gcr.io/flowise-dev-pipeline/n8n:dev', '.'
+    ]
+
+  # Step 2: Push the Docker image to GCR
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [
+      'push', 'gcr.io/flowise-dev-pipeline/n8n:dev'
+    ]
+
+# Cloud Build options to enable Cloud Logging
+options:
+  logging: CLOUD_LOGGING_ONLY  # Send logs only to Cloud Logging
+
+# Good luck charm :)
